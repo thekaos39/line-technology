@@ -33,7 +33,7 @@ export class CouponModalComponent implements OnInit {
     this.activeModal.dismiss()
   }
 
-  onSelect(coupon) {
+  onSelect(coupon: Coupon) {
     this.selected.emit(coupon)
     this.dismiss()
   }

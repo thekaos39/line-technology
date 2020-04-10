@@ -4,9 +4,7 @@ import { NgbDateAdapter, NgbDateStruct, NgbDateParserFormatter } from '@ng-boots
 /**
  * This Service handles how the date is represented in scripts i.e. ngModel.
  */
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class CustomAdapter extends NgbDateAdapter<string> {
 
   readonly DELIMITER = '-'
@@ -31,9 +29,7 @@ export class CustomAdapter extends NgbDateAdapter<string> {
 /**
  * This Service handles how the date is rendered and parsed from keyboard i.e. in the bound input field.
  */
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class CustomDateParserFormatter extends NgbDateParserFormatter {
 
   readonly DELIMITER = '/'
