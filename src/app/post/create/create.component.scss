@@ -1,0 +1,31 @@
+.post-type {
+  width: 35px;
+  height: 35px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &.selected,
+  &:hover {
+    color: #fff;
+    background-color: #6c757d;
+  }
+}
+
+.select-box {
+  height: 120px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.coupon-box {
+  height: 120px;
+  border-radius: 4px;
+
+  .coupon-remove {
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+  }
+}

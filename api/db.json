@@ -1,0 +1,34 @@
+{
+  "coupons": {
+    "resultCode": 1,
+    "resultData": {
+      "page": 1,
+      "total": 3,
+      "pageSize": 10,
+      "list": [{
+        "id": 1,
+        "startDate": 1586483125853,
+        "endDate": 1586483125853,
+        "status": "ACTIVE",
+        "title": "coupon 1",
+        "thumbnail": "assets/imgs/default-thumbnail.png"
+      }, {
+        "id": 2,
+        "startDate": 1586483125853,
+        "endDate": 1586483125853,
+        "status": "ACTIVE",
+        "title": "coupon 2",
+        "thumbnail": "assets/imgs/default-thumbnail.png"
+      }, {
+        "id": 3,
+        "startDate": 1586483125853,
+        "endDate": 1586483125853,
+        "status": "ACTIVE",
+        "title": "coupon 3",
+        "thumbnail": "assets/imgs/default-thumbnail.png"
+      }]
+    },
+    "errorDisplay": false,
+    "errorMessage": null
+  }
+}

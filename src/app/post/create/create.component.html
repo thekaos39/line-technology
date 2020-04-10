@@ -1,0 +1,82 @@
+<div class="container my-5">
+  <h2>Timeline post</h2>
+  <hr>
+  <form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
+    <div class="d-flex justify-content-between my-3">
+      <button class="btn btn-secondary" type="submit" (click)="onSubmit(true)">Save draft</button>
+      <button class="btn btn-success" type="submit" [disabled]="formGroup.invalid">{{ submitText }}</button>
+    </div>
+    <hr>
+    <div class="my-3 row">
+      <div class="col-md-3 text-md-right">Publish date</div>
+      <div class="col-md-9 mt-2 mt-md-0">
+        <div class="custom-control custom-radio">
+          <input type="radio" id="publishNow" class="custom-control-input" formControlName="isPublishNow"
+            [value]="true">
+          <label class="custom-control-label" for="publishNow">Publish now</label>
+        </div>
+        <div class="custom-control custom-radio mt-2">
+          <input type="radio" id="schedule" class="custom-control-input" formControlName="isPublishNow" [value]="false">
+          <label class="custom-control-label" for="schedule">
+            <div class="form-group mb-0 d-md-flex  align-items-center">
+              <input class="form-control" placeholder="MM/DD/YYYY" name="dp" formControlName="date" ngbDatepicker
+                #d="ngbDatepicker" (click)="d.toggle(); patchStatusValue()">
+              <ngb-timepicker class="ml-md-3" formControlName="time" [spinners]="false" (click)="patchStatusValue()">
+              </ngb-timepicker>
+              <span class="badge badge-pill border ml-md-3">GTM +7:00</span>
+            </div>
+          </label>
+          <small *ngIf="submitted" class="text-danger">
+            <ng-container *ngIf="controls.date.invalid">
+              <div *ngIf="controls.date.errors.required">Date is required.</div>
+              <div *ngIf="controls.date.errors.ngbDate">Date is invalid format.</div>
+            </ng-container>
+            <ng-container *ngIf="controls.time.invalid">
+              <div *ngIf="controls.time.errors.required">Time is required.</div>
+            </ng-container>
+          </small>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="card">
+      <div class="card-header d-flex align-items-center">
+        <div *ngFor="let type of types" class="post-type d-flex align-items-center justify-content-center mr-1"
+          [class]="{ 'selected': type.isSelected }" [ngbTooltip]="type.type" (click)="onSetType(type.type)">
+          <i class="fas" [class]="type.icon"></i>
+        </div>
+      </div>
+      <div class="card-body">
+        <ng-container [ngSwitch]="selectedType">
+          <ng-container *ngSwitchCase="postTypes.COUPON">
+            <div *ngIf="!selectedCoupon; else couponTemplate"
+              class="select-box border d-flex flex-column align-items-center justify-content-center"
+              (click)="onSetType(postTypes.COUPON)">
+              <div class="text-success">Select coupon</div>
+              <i class="fas fa-3x fa-ticket-alt text-secondary"></i>
+            </div>
+            <ng-template #couponTemplate>
+              <div class="border d-flex align-items-center position-relative coupon-box">
+                <img [src]="selectedCoupon.thumbnail" class="h-100" alt="">
+                <div class="mx-3">
+                  <b class="text-success d-block">{{ selectedCoupon.title }}</b>
+                  <small>Validity period {{ selectedCoupon.startDate | date: 'medium' }} ~
+                    {{ selectedCoupon.endDate | date: 'medium' }}</small>
+                </div>
+                <button class="position-absolute btn btn-secondary p-0 coupon-remove"
+                  (click)="selectedCoupon = null; controls.item.patchValue(null)">
+                  <i class="fas fa-times text-white"></i>
+                </button>
+              </div>
+            </ng-template>
+          </ng-container>
+          <div *ngSwitchDefault class="text-monospace text-center">This function is not implemented yet!</div>
+        </ng-container>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success btn-lg mt-5 d-flex align-items-center mx-auto" [disabled]="formGroup.invalid">
+      <span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true" *ngIf="isLoading"></span>
+      {{ submitText }}
+    </button>
+  </form>
+</div>
